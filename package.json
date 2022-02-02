@@ -1,0 +1,25 @@
+{
+  "name": "notion-sync",
+  "version": "1.0.0",
+  "description": "notion sync to TG and more services",
+  "main": "index.js",
+  "scripts": {
+    "start": "node index.js",
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/Kislax/Notion-sync.git"
+  },
+  "author": "Max Podstrechny maxpodstrechn@gmail.com",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/Kislax/Notion-sync/issues"
+  },
+  "homepage": "https://github.com/Kislax/Notion-sync#readme",
+  "dependencies": {
+    "@notionhq/client": "^0.4.12",
+    "dotenv": "^14.3.0",
+    "telegraf": "^4.6.0"
+  }
+}
