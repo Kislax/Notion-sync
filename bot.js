@@ -1,6 +1,7 @@
 const { parentPort } = require('worker_threads')
 require('dotenv').config()
 const { Telegraf } = require('telegraf');
+const creatorChatTgId = process.env.CREATOR_CHAT_TG_ID
 
 const menu = (prefix, ctx, ownerbot) => {
     return `●▬▬▬▬▬ஜ۩ஜ▬▬▬▬▬●`
@@ -14,7 +15,7 @@ bot.telegram.getMe().then((botInfo) => {
 
 bot.start((ctx) => ctx.reply('Интеграции Notion? Это по нашему!'))
 // bot.use(Telegraf.session())
-bot.telegram.sendMessage("427848755", "Бот вновь работает!")
+bot.telegram.sendMessage(creatorChatTgId, "Бот вновь работает! Вновь работает")
 
 const sendBotMess = (msg) => {
     console.log(msg)
@@ -22,7 +23,7 @@ const sendBotMess = (msg) => {
     msg.forEach(e => {
         text = text + '\n' + e
     })
-    bot.telegram.sendMessage("427848755", "Содержание БД: " + text)
+    bot.telegram.sendMessage(creatorChatTgId, "Содержание БД: " + text)
 }
 
 
