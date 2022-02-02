@@ -9,13 +9,13 @@ const notion = new Client({
     auth: process.env.NOTION_TOKEN,
 });
 
-const databaseId = process.env.NOTION_DATABASE_ID
+const inboxDatabaseId = process.env.NOTION_INBOX_DB_ID
 
 
 const addPage = async (title) => {
     try {
         const response = await notion.pages.create({
-            parent: { database_id: databaseId },
+            parent: { database_id: inboxDatabaseId },
             properties: {
                 title: {
                     title: [
@@ -38,7 +38,7 @@ const addPage = async (title) => {
 const showDatabase = async () => {
     try {
         const response = await notion.databases.query({
-            database_id: databaseId
+            database_id: inboxDatabaseId
         })
         // console.log(response.properties)
         tgWorker.postMessage(response)
