@@ -4,7 +4,7 @@
   "description": "notion sync to TG and more services",
   "main": "start.js",
   "scripts": {
-    "start": "node start.js",
+    "start": "node startajs",
     "test": "echo \"Error: no test specified\" && exit 1"
   },
   "repository": {
