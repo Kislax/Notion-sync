@@ -3,18 +3,20 @@ require('dotenv').config()
 const { Client, APIErrorCode, LogLevel } = require("@notionhq/client")
 const tgWorker = new Worker('./bot.js');
 
+
 // Initializing a client
 const notion = new Client({
     auth: process.env.NOTION_TOKEN,
 });
 
-const inboxDatabaseId = process.env.NOTION_DATABASE_ID
+
+const DatabaseId = process.env.NOTION_DATABASE_ID
 
 
 const addPage = async (title) => {
     try {
         const response = await notion.pages.create({
-            parent: { database_id: inboxDatabaseId },
+            parent: { database_id: DatabaseId },
             properties: {
                 title: {
                     title: [
@@ -36,7 +38,7 @@ const addPage = async (title) => {
 const showDatabase = async () => {
     try {
         const response = await notion.databases.query({
-            database_id: inboxDatabaseId
+            database_id: DatabaseId
         })
         tgWorker.postMessage(response)
     }
