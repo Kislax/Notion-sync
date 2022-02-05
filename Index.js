@@ -1,7 +1,6 @@
 const { Worker } = require('worker_threads');
 require('dotenv').config()
 const { Client, APIErrorCode, LogLevel } = require("@notionhq/client")
-
 const tgWorker = new Worker('./bot.js');
 
 // Initializing a client
@@ -9,7 +8,7 @@ const notion = new Client({
     auth: process.env.NOTION_TOKEN,
 });
 
-const inboxDatabaseId = process.env.NOTION_INBOX_DB_ID
+const inboxDatabaseId = process.env.NOTION_DATABASE_ID
 
 
 const addPage = async (title) => {
@@ -29,7 +28,6 @@ const addPage = async (title) => {
             },
         })
         console.log(response)
-        console.log("Success! Entry added.")
     } catch (error) {
         console.error(error.body)
     }
@@ -40,7 +38,6 @@ const showDatabase = async () => {
         const response = await notion.databases.query({
             database_id: inboxDatabaseId
         })
-        // console.log(response.properties)
         tgWorker.postMessage(response)
     }
     catch (error) {
@@ -71,9 +68,6 @@ const search = async (searchText) => {
     console.log(response);
 }
 
-// addItem("Сяся маладец")
-// showDatabase()
-// deleteBlock()
 tgWorker.on('message', msg => {
     console.log('message worker', msg)
     switch (msg.type) {
